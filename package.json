@@ -1,0 +1,19 @@
+{
+  "name": "get-release-notes",
+  "version": "0.0.1",
+  "description": "get release notes for npm packages",
+  "main": "index.js",
+  "dependencies": {
+    "bluebird": "^3.4.7",
+    "debug": "^2.6.1",
+    "marked": "^0.3.6",
+    "marked-terminal": "^2.0.0",
+    "silent-npm-registry-client": "^2.1.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jeff Shaver",
+  "license": "MIT"
+}
