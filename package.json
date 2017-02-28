@@ -3,8 +3,10 @@
   "version": "0.0.1",
   "description": "get release notes for npm packages",
   "main": "index.js",
+  "engine": "node >= 7.6.0",
   "dependencies": {
     "bluebird": "^3.4.7",
+    "commander": "^2.9.0",
     "debug": "^2.6.1",
     "marked": "^0.3.6",
     "marked-terminal": "^2.0.0",
