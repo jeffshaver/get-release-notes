@@ -10,6 +10,8 @@
     "debug": "^2.6.1",
     "marked": "^0.3.6",
     "marked-terminal": "^2.0.0",
+    "opn": "^4.0.2",
+    "prompt-sync": "^4.1.4",
     "silent-npm-registry-client": "^2.1.0"
   },
   "devDependencies": {},

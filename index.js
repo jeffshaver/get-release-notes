@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 const program = require('commander')
+const prompt = require('prompt-sync')({})
 
 let packageNames = []
 
@@ -17,10 +18,19 @@ function programAction (...packages) {
   const getDependenciesFromPackageJson = require('./src/get-dependencies-from-package-json')
 
   packageNames = getDependenciesFromPackageJson(__dirname)
+
+  if (program.browser && packageNames.length > 5) {
+    const shouldContinue = prompt(`This will open ${packageNames.length} tab(s). Continue? (N/y) `)
+
+    if (['no', 'n', ''].includes(shouldContinue)) {
+      process.exit(1)
+    }
+  }
 }
 
 program
   .version('0.0.1')
+  .option('-B, --browser', 'open each release in a browser tab')
   .option('-D, --debug', 'debug mode')
   .option('-P, --package-json', 'pull dependencies from package.json')
   .action(programAction)
@@ -63,7 +73,12 @@ async function run () {
   debug(`will fetch the latest changelog(s) for ${packageNames.join(', ')}`)
 
   const packages = await getAllPackages(packageNames)
-  const repositoryUris = getPackageRepositoryUris(packages)
+  const repositoryUris = getPackageRepositoryUris(packages, program.browser)
+
+  if (program.browser) {
+    process.exit(1)
+  }
+
   const releaseNotes = await getAllReleaseNotes(repositoryUris)
 
   if (!program.debug) {
